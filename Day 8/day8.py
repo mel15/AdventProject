@@ -24,36 +24,6 @@ def part_1(dict_antennas, temp_board):
                         temp_board[pos2[0]] = new_line
 
 
-def part_2_backup(dict_antennas, temp_board):
-    len_board = len(temp_board)
-    len_line = len(temp_board[0])
-    for key, value in dict_antennas.items():
-        delta = []
-        for i in range(len(value)):
-            for j in range(len(value)):
-                if value[i] != value[j]:
-                    delta = [value[j][0] - value[i][0], value[j][1] - value[i][1]]
-                    pos1 = [value[i][0] - delta[0], value[i][1] - delta[1]]
-                    mult_delta = 1
-                    while 0 <= pos1[0] < len_board and 0 <= pos1[1] < len_line:
-                        new_line = temp_board[pos1[0]]
-                        new_line = new_line[:pos1[1]] + "#" + new_line[pos1[1] + 1:]
-                        temp_board[pos1[0]] = new_line
-                        mult_delta += 1
-                        pos1 = [value[i][0] - mult_delta * delta[0],
-                                value[i][1] - mult_delta * delta[1]]
-
-                    pos2 = [value[j][0] + delta[0], value[j][1] + delta[1]]
-                    mult_delta = 1
-                    while 0 <= pos2[0] < len_board and 0 <= pos2[1] < len_line:
-                        new_line = temp_board[pos2[0]]
-                        new_line = new_line[:pos2[1]] + "#" + new_line[pos2[1] + 1:]
-                        temp_board[pos2[0]] = new_line
-                        mult_delta += 1
-                        pos2 = [value[j][0] + mult_delta * delta[0],
-                                value[j][1] + mult_delta * delta[1]]
-
-
 def part_2(dict_antennas, temp_board):
     len_board = len(temp_board)
     len_line = len(temp_board[0])
@@ -62,8 +32,6 @@ def part_2(dict_antennas, temp_board):
         for i in range(len(value)):
             for j in range(len(value)):
                 if value[i] != value[j]:
-                    # print(value[i])
-                    # print(value[j])
                     new_line = temp_board[value[i][0]]
                     new_line = new_line[:value[i][1]] + "#" + new_line[value[i][1] + 1:]
                     temp_board[value[i][0]] = new_line
