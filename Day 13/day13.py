@@ -17,8 +17,6 @@ def main():
         lines = file.readlines()
 
     lines = [line.replace("\n", "") for line in lines]
-    dict_claw_machines = {}
-    number_machine = 1
     A_price = 3
     B_price = 1
     total_tokens = 0
@@ -42,7 +40,6 @@ def main():
             price_y = line.index("Y=") + 2
 
             A = np.array([first_eq, second_eq])
-            # B = np.array([int(line[price_x:price_comma]), int(line[price_y:])])
             price_x_corrected = int(line[price_x:price_comma]) + 10000000000000
             price_y_corrected = int(line[price_y:]) + 10000000000000
             B = np.array([price_x_corrected, price_y_corrected])
